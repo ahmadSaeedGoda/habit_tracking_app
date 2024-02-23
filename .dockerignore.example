@@ -1,9 +1,16 @@
+# Exclude version control files
+.git
+.gitignore
+
+# Exclude unnecessary development and testing files
+*_test.go
+.idea/
+.vscode/
+/build/
+
 # Exclude all environment files
 *.env
 .env.*
-!.env.example
-!.env.*.example
-
 
 # Binaries
 *.exe
@@ -31,31 +38,22 @@ tmp/
 
 # Dependency directories
 /vendor/
-/go.sum
-
-# Generated files
-/swagger/
-/internal/routers/docs/
 
 # Build artifacts
 /build/
-
-# Air hot reload artifacts
-/.air.toml
 
 # Docker artifacts
 .DS_Store
 docker-compose.yml
 Dockerfile
 Dockerfile.*
-!Dockerfile.staging.uat.example
-!Dockerfile.dev.example
-!Dockerfile.postgres.example
-
 docker-compose.override.yml
 .dockerignore
-!.dockerignore.example
-
+.dockerignore.example
 
 # Logs
 *.log
+
+# MISC
+LICENSE
+README.md
