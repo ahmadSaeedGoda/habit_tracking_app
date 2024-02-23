@@ -1,0 +1,5 @@
+# Start from the official PostgreSQL image
+FROM postgres:latest
+
+# Expose the PostgreSQL port
+EXPOSE 5432

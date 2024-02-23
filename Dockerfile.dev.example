@@ -1,0 +1,21 @@
+# Start from the official Go image
+FROM golang:latest
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Install air
+RUN go install github.com/cosmtrek/air@latest
+
+# Copy the Go module files and download dependencies
+COPY go.mod go.sum ./
+RUN go mod download
+
+# Copy the source code into the container
+COPY . .
+
+# Expose port 8080 to the outside world
+EXPOSE 8080
+
+# Run the application with Air
+CMD ["air"]
