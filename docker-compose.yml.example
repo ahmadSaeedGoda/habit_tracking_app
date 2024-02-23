@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  habit_tracker:
+    image: habit_tracker:1.0.0
+    env_file:
+      .env.habit_tracker
+    working_dir: /app
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: habit_tracker
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/app  # Mount the source code directory into the container for hot reload
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:latest
+    build:
+      context: .
+      dockerfile: ./internal/database/postgres/Dockerfile.postgres
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+volumes:
+  postgres-data:

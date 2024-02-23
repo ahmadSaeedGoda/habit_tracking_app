@@ -1,0 +1,503 @@
+{
+	"info": {
+		"_postman_id": "c396397a-b1ba-48b3-8751-4ac37c6eb640",
+		"name": "Habit Tracker APIs",
+		"description": "Habit Tracker currently supports JWT Auth for Users and Habit CRUD.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8125803",
+		"_collection_link": "https://egysoft.postman.co/workspace/Team-Workspace~27f02eda-6c2a-4083-8b63-3c5eb45431bf/collection/8125803-c396397a-b1ba-48b3-8751-4ac37c6eb640?action=share&source=collection_link&creator=8125803"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "Register",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"test3\",\n\t\"email\": \"test3@example.com\",\n\t\"password\": \"password\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"register"
+									]
+								},
+								"description": "### Register User\n\nThis endpoint is used to register a new user.\n\n- Method: POST\n- Base URL: {{baseUrl}}\n- Path: /users/register\n    \n\n#### Request Body\n\n- Type: raw (application/json)\n    \n\n| Key | Type | Description |\n| --- | --- | --- |\n| name | string | The name of the user |\n| email | string | The email address of the user |\n| password | string | The password for the user account |\n\n#### Response\n\n- Status: 409\n- Content-Type: application/json\n    \n\n``` json\n{\n    \"message\": \"The error message\",\n    \"status\": \"The status of the request\",\n    \"data\": \"null\"\n}\n\n ```\n\n- Status: 201\n- Content-Type: application/json\n    \n\n``` json\n{\n    \"message\": \"User registered successfully\"\n}\n\n ```"
+							},
+							"response": []
+						},
+						{
+							"name": "Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"followRedirects": true,
+								"disableUrlEncoding": false,
+								"disableCookies": false
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"john@example.com\",\n\t\"password\": \"Default_Passw0rd\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"login"
+									]
+								},
+								"description": "This endpoint allows users to log in via an HTTP POST request to {{baseUrl}}/users/login. The request should include a raw body with the user's email and password.\n\n### Request Body\n\n- email (string): The user's email\n- password (string): The user's password\n    \n\nUpon a successful execution, the server will respond with a status code of 200 and a JSON object in the response body. The response includes a message, status, and a data object containing a token for the authenticated user.\n\n### Response\n\n- message (string): A message from the server\n- status (string): The status of the response\n- data (object): An object containing the user's token\n    \n\nExample Response:\n\n``` json\n{\n    \"message\": \"success\",\n    \"status\": \"success\",\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3MDg3MjQwNTJ9.qjzQM-c8IUp_x-F5CCAwGlbTKj0-xVO7333y554W7Gs\"\n    }\n}\n\n ```"
+							},
+							"response": []
+						}
+					],
+					"description": "Users Auth \"Registration & Login\""
+				},
+				{
+					"name": "Get User Info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/users/me",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"me"
+							]
+						},
+						"description": "This endpoint retrieves the details of the currently authenticated user. Upon a successful execution, the server responds with a status code of 200 and a JSON object containing the user's information, including their unique ID, name, and email address."
+					},
+					"response": []
+				}
+			],
+			"description": "Users Auth, including Registration & Login, along with Getting User Data."
+		},
+		{
+			"name": "Habits",
+			"item": [
+				{
+					"name": "List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test for successful response example",
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response is a JSON object\", function () {",
+									"    pm.expect(pm.response.json()).to.be.an('object');",
+									"});",
+									"",
+									"pm.test(\"Response contains data array\", function () {",
+									"    pm.expect(pm.response.json()).to.have.property('data').that.is.an('array');",
+									"});",
+									"",
+									"// Test for error response example",
+									"pm.test(\"Response status code is 404 for error example\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Error response is a JSON object\", function () {",
+									"    pm.expect(pm.response.json()).to.be.an('object');",
+									"});",
+									"",
+									"pm.test(\"Error response contains message and status properties\", function () {",
+									"    pm.expect(pm.response.json()).to.have.property('message');",
+									"    pm.expect(pm.response.json()).to.have.property('status');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/habits/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"habits",
+								""
+							]
+						},
+						"description": "This endpoint makes an HTTP GET request to retrieve a list of habits. The response will be in JSON format and will include an array of habit objects, each containing an id, name, and description.\n\nThe response from the last execution had a status code of 200, indicating a successful request. The content type of the response was application/json, and the response body included a message, status, and an array of habit objects with their respective id, name, and description."
+					},
+					"response": []
+				},
+				{
+					"name": "Get One",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/habits/{{habitId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"habits",
+								"{{habitId}}"
+							]
+						},
+						"description": "This endpoint makes an HTTP GET request to retrieve details of a specific habit identified by the habitId parameter. The response will have a status code of 200 and a content type of application/json. The response body will contain a message, status, and data object with the habit's id, name, and description."
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"test title\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/habits/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"habits",
+								""
+							]
+						},
+						"description": "This API endpoint allows you to create a new habit. When you make a POST request to `{{baseUrl}}/habits/`, you need to include the habit name in the request body.\n\n### Request Body\n\n- `name`: (string) The name of the habit to be created.\n    \n\n### Response\n\nUpon a successful creation, the API returns a status code of 201 and a JSON response with the following structure:\n\n``` json\n{\n    \"message\": \"\",\n    \"status\": \"\",\n    \"data\": null\n}\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Eat Healthy\",\n\t\"description\": \"Avoid Junk Food\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/habits/5",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"habits",
+								"5"
+							]
+						},
+						"description": "This endpoint sends an HTTP PATCH request to update the habit with the ID 5. The request should include a JSON payload in the raw request body type with the keys \"name\" and \"description\" to update the habit details.\n\n### Request Body\n\n- `name`: (string) The updated name of the habit.\n- `description`: (string) The updated description of the habit.\n    \n\n### Response\n\n- Status: 200\n- Content-Type: application/json\n- `message`: A message indicating the outcome of the update operation.\n- `status`: The status of the response.\n- `data`: The updated habit data. This field will be null if the update was not successful."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/habits/9",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"habits",
+								"9"
+							]
+						},
+						"description": "This endpoint sends an HTTP DELETE request to delete the habit with the ID.\n\nUpon successful execution, the API returns a 200 status with a JSON response containing a message, status, and data. In this case, the message is empty, status is also empty, and the data is null."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "inherit"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

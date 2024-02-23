@@ -1,0 +1,55 @@
+# Exclude all environment files
+*.env
+.env.*
+!.env.example
+!.env.*.example
+
+
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+tmp/
+
+# Output files
+*.out
+*.out.*
+*.test
+
+# IDE files
+.idea/
+.vscode/
+
+# Compiled Go code
+*.test
+*.prof
+*.exe
+*.out
+/_test/
+
+# Dependency directories
+/vendor/
+/go.sum
+
+# Generated files
+/swagger/
+/internal/routers/docs/
+
+# Build artifacts
+/build/
+
+# Air hot reload artifacts
+/.air.toml
+
+# Docker artifacts
+.DS_Store
+docker-compose.yml
+Dockerfile
+Dockerfile.*
+docker-compose.override.yml
+.dockerignore
+
+# Logs
+*.log

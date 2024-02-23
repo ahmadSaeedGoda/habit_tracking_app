@@ -1,0 +1,43 @@
+{
+	"users": [
+		{
+			"Name": "John Doe",
+			"Email": "john@example.com",
+			"Password": "Default_Pa$$w0rd"
+		},
+		{
+			"Name": "Jane Doe",
+			"Email": "jane@example.com"
+		},
+		{
+			"Name": "Mickey Mouse",
+			"Email": "mickey@example.com"
+		},
+		{
+			"Name": "Minnie Mouse",
+			"Email": "minnie@example.com"
+		}
+	],
+	"habits": [
+		{
+			"Name": "Exercise",
+			"Description": "Regular physical activity",
+			"UserID": 1
+		},
+		{
+			"Name": "Reading",
+			"Description": "Read a book daily",
+			"UserID": 1
+		},
+		{
+			"Name": "Nature",
+			"Description": "Spend Time in Nature",
+			"UserID": 2
+		},
+		{
+			"Name": "Drink Water",
+			"Description": "Hydrate with sufficient water amount as per BMI",
+			"UserID": 1
+		}
+	]
+}
